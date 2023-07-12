@@ -6,8 +6,12 @@ import {
   HeaderInfo,
   HeaderLocation,
 } from './styles'
+import { useContext } from 'react'
+import { CartContext } from '../../contexts/CartContext'
 
 export function Header() {
+  const { cart } = useContext(CartContext)
+
   return (
     <HeaderContainer>
       <Logo />
@@ -19,6 +23,13 @@ export function Header() {
 
         <HeaderButtonCard>
           <ShoppingCart size={22} weight="fill" />
+          {cart.length > 0 ? (
+            <div>
+              <span>{cart.length}</span>
+            </div>
+          ) : (
+            ''
+          )}
         </HeaderButtonCard>
       </HeaderInfo>
     </HeaderContainer>

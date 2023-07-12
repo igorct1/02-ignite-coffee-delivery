@@ -41,4 +41,20 @@ export const HeaderButtonCard = styled.button`
   color: ${(props) => props.theme.colors['yellow-dark']};
 
   cursor: pointer;
+
+  position: relative;
+
+  div {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: ${(props) => props.theme.colors['yellow-dark']};
+    padding: 1rem 0.8rem;
+    border-radius: 9999px;
+    color: ${(props) => props.theme.colors.white};
+  }
+
+  div span {
+    font-size: ${(props) => props.theme.fontSizes['button-M']};
+  }
 `

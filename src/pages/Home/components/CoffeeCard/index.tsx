@@ -8,7 +8,7 @@ import {
 } from './styles'
 import { QuantityButton } from '../../../../components/QuantityButton'
 
-interface ICoffee {
+export interface ICoffee {
   id: number
   tags: string[]
   name: string

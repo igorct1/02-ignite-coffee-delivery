@@ -31,6 +31,7 @@ export const CoffeeCardContainer = styled.div`
     text-align: center;
   }
 `
+
 export const CoffeeCardList = styled.ul`
   list-style: none;
   display: flex;
