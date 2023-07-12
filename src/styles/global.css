@@ -21,3 +21,8 @@ button {
 	font-size: 1.6rem;
 	font-family: 'Roboto', sans-serif;
 }
+
+img {
+	max-width: 100%;
+	display: block;
+}
