@@ -4,7 +4,7 @@ export const HeroContainer = styled.section`
   display: flex;
   justify-content: space-between;
 
-  padding: 10rem 0rem;
+  padding: 10rem 0rem 6rem;
 `
 
 export const HeroInfoText = styled.div`
