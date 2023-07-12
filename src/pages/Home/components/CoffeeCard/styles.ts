@@ -61,7 +61,7 @@ export const CoffeeCardPriceContainer = styled.div`
 
     span {
       font-family: ${(props) => props.theme.fonts.title};
-      font-size: ${(props) => props.theme.fontSizes['title-S']};
+      font-size: ${(props) => props.theme.fontSizes['title-M']};
     }
   }
 `
@@ -69,27 +69,9 @@ export const CoffeeCardPriceContainer = styled.div`
 export const CoffeeCardPriceCart = styled.div`
   display: flex;
   gap: 1rem;
+
   input {
     width: 30px;
-  }
-`
-
-export const QuantityButton = styled.div`
-  background: ${(props) => props.theme.colors['base-button']};
-  padding: 1rem;
-  display: flex;
-  gap: 1rem;
-
-  border-radius: 8px;
-
-  button {
-    border: 0;
-    background: none;
-    cursor: pointer;
-
-    svg {
-      color: ${(props) => props.theme.colors['purple-dark']};
-    }
   }
 `
 
@@ -97,6 +79,8 @@ export const AddToCartButton = styled.button`
   color: ${(props) => props.theme.colors.white};
   border: 0;
   background: none;
+  display: flex;
+  align-items: center;
 
   border-radius: 8px;
 
@@ -104,4 +88,8 @@ export const AddToCartButton = styled.button`
   padding: 0.8rem;
 
   cursor: pointer;
+
+  &:hover {
+    background-color: ${(props) => props.theme.colors.purple};
+  }
 `

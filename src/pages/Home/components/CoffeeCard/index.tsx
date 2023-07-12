@@ -1,12 +1,12 @@
-import { Minus, Plus, ShoppingCart } from 'phosphor-react'
+import { ShoppingCart } from 'phosphor-react'
 import {
   AddToCartButton,
   CoffeeCardContainer,
   CoffeeCardList,
   CoffeeCardPriceCart,
   CoffeeCardPriceContainer,
-  QuantityButton,
 } from './styles'
+import { QuantityButton } from '../../../../components/QuantityButton'
 
 interface ICoffee {
   id: number
@@ -43,16 +43,7 @@ export function CoffeeCard({ coffee }: CoffeeProps) {
         </p>
 
         <CoffeeCardPriceCart>
-          <QuantityButton>
-            <button>
-              <Minus />
-            </button>
-            <span>0</span>
-            <button>
-              <Plus />
-            </button>
-          </QuantityButton>
-
+          <QuantityButton />
           <AddToCartButton>
             <ShoppingCart size={22} weight="fill" />
           </AddToCartButton>
