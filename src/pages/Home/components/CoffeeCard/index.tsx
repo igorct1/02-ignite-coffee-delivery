@@ -7,6 +7,8 @@ import {
   CoffeeCardPriceContainer,
 } from './styles'
 import { QuantityButton } from '../../../../components/QuantityButton'
+import { CartContext } from '../../../../contexts/CartContext'
+import { useContext } from 'react'
 
 export interface ICoffee {
   id: number
@@ -21,6 +23,16 @@ type CoffeeProps = {
   coffee: ICoffee
 }
 export function CoffeeCard({ coffee }: CoffeeProps) {
+  const { addNewCoffeeToCart } = useContext(CartContext)
+
+  function onIncrease() {
+    return 1
+  }
+
+  function onDecrease() {
+    return 0
+  }
+
   return (
     <CoffeeCardContainer>
       <div>
@@ -43,8 +55,8 @@ export function CoffeeCard({ coffee }: CoffeeProps) {
         </p>
 
         <CoffeeCardPriceCart>
-          <QuantityButton />
-          <AddToCartButton>
+          <QuantityButton onIncrease={onIncrease} onDecrease={onDecrease} />
+          <AddToCartButton onClick={() => addNewCoffeeToCart(coffee)}>
             <ShoppingCart size={22} weight="fill" />
           </AddToCartButton>
         </CoffeeCardPriceCart>
