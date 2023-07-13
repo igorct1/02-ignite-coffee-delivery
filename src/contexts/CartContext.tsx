@@ -5,6 +5,10 @@ import { produce } from 'immer'
 interface CartContextProps {
   cart: ICoffee[] | []
   addNewCoffeeToCart: (coffee: ICoffee) => void
+  changeCoffeeQuantity: (
+    quantity: number,
+    type: 'increase' | 'decrease',
+  ) => void
 }
 
 interface CartProviderProps {
@@ -24,8 +28,18 @@ export function CartProvider({ children }: CartProviderProps) {
     })
   }
 
+  function changeCoffeeQuantity(
+    quantity: number,
+    type: 'increase' | 'decrease',
+  ) {
+    console.log(quantity)
+    console.log(type)
+  }
+
   return (
-    <CartContext.Provider value={{ cart, addNewCoffeeToCart }}>
+    <CartContext.Provider
+      value={{ cart, addNewCoffeeToCart, changeCoffeeQuantity }}
+    >
       {children}
     </CartContext.Provider>
   )

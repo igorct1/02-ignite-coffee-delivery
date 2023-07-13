@@ -8,7 +8,8 @@ import {
 } from './styles'
 import { QuantityButton } from '../../../../components/QuantityButton'
 import { CartContext } from '../../../../contexts/CartContext'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
+import { produce } from 'immer'
 
 export interface ICoffee {
   id: number
@@ -23,14 +24,30 @@ type CoffeeProps = {
   coffee: ICoffee
 }
 export function CoffeeCard({ coffee }: CoffeeProps) {
+  const [quantity, setQuantity] = useState(1)
+
   const { addNewCoffeeToCart } = useContext(CartContext)
 
   function onIncrease() {
-    return 1
+    setQuantity((state) => {
+      return produce(state, (draft) => draft + 1)
+    })
   }
 
   function onDecrease() {
-    return 0
+    setQuantity((state) => {
+      return produce(state, (draft) => {
+        if (draft > 1) return draft - 1
+      })
+    })
+  }
+
+  function handleAddNewCoffeeToCart() {
+    const coffeeToAdd = {
+      ...coffee,
+      quantity,
+    }
+    addNewCoffeeToCart(coffeeToAdd)
   }
 
   return (
@@ -55,8 +72,12 @@ export function CoffeeCard({ coffee }: CoffeeProps) {
         </p>
 
         <CoffeeCardPriceCart>
-          <QuantityButton onIncrease={onIncrease} onDecrease={onDecrease} />
-          <AddToCartButton onClick={() => addNewCoffeeToCart(coffee)}>
+          <QuantityButton
+            onIncrease={onIncrease}
+            onDecrease={onDecrease}
+            quantity={quantity}
+          />
+          <AddToCartButton onClick={handleAddNewCoffeeToCart}>
             <ShoppingCart size={22} weight="fill" />
           </AddToCartButton>
         </CoffeeCardPriceCart>
