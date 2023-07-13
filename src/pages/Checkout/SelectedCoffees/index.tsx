@@ -2,9 +2,13 @@ import { useContext } from 'react'
 
 import { CartContext } from '../../../contexts/CartContext'
 import { SelectedCoffeesContainer, SelectedCoffeesWrapper } from './styles'
+import { SelectedCoffeeCard } from '../SelectedCoffeeCard'
+import { ConfirmOrder } from '../ConfirmOrder'
 
 export function SelectedCoffees() {
   const { cart } = useContext(CartContext)
+
+  console.log(cart)
 
   return (
     <SelectedCoffeesContainer>
@@ -12,9 +16,16 @@ export function SelectedCoffees() {
 
       <SelectedCoffeesWrapper>
         {cart.length > 0 ? (
-          <p>cafés selecionados: </p>
+          <>
+            {cart.map((coffee) => {
+              return <SelectedCoffeeCard coffee={coffee} key={coffee.id} />
+            })}
+            <ConfirmOrder />
+          </>
         ) : (
-          <p>Não há cafés selecionados.</p>
+          <div>
+            <p>Não há cafés selecionados</p>
+          </div>
         )}
       </SelectedCoffeesWrapper>
     </SelectedCoffeesContainer>

@@ -18,11 +18,13 @@ export interface ICoffee {
   description: string
   photo: string
   price: number
+  quantity?: number
 }
 
 type CoffeeProps = {
   coffee: ICoffee
 }
+
 export function CoffeeCard({ coffee }: CoffeeProps) {
   const [quantity, setQuantity] = useState(1)
 
