@@ -1,5 +1,6 @@
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { ConfirmOrderDataProps } from '../Checkout'
+import { useEffect } from 'react'
 import {
   SuccessContainer,
   SuccessIcon,
@@ -11,12 +12,22 @@ import {
 } from './styles'
 import { CurrencyDollar, MapPin, Timer } from 'phosphor-react'
 import illustration from '../../assets/Illustration.png'
+
 interface LocationType {
   state: ConfirmOrderDataProps
 }
 
 export function Success() {
   const { state } = useLocation() as unknown as LocationType
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (!state) {
+      navigate('/')
+    }
+  }, [state, navigate])
+
+  if (!state) return null
 
   return (
     <SuccessContainer>
