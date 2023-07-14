@@ -50,6 +50,7 @@ export const RemoveButton = styled.button`
   display: flex;
   align-items: center;
   gap: 0.4rem;
+  cursor: pointer;
 
   svg {
     color: ${(props) => props.theme.colors.purple};

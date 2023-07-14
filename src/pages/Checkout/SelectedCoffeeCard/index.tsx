@@ -1,7 +1,6 @@
 import { Trash } from 'phosphor-react'
 import { QuantityButton } from '../../../components/QuantityButton'
 import { formatPrice } from '../../../utils/formatPrice'
-import { ICoffee } from '../../Home/components/CoffeeCard'
 import { useContext } from 'react'
 
 import {
@@ -10,14 +9,14 @@ import {
   SelectedCoffeeCardContainer,
   SelectedCoffeePrice,
 } from './styles'
-import { CartContext } from '../../../contexts/CartContext'
+import { CartContext, CartProps } from '../../../contexts/CartContext'
 
-interface SelectedCoffeCardProps {
-  coffee: ICoffee
+interface SelectedCoffeeCardProps {
+  coffee: CartProps
 }
 
-export function SelectedCoffeeCard({ coffee }: SelectedCoffeCardProps) {
-  const { changeCoffeeQuantity } = useContext(CartContext)
+export function SelectedCoffeeCard({ coffee }: SelectedCoffeeCardProps) {
+  const { changeCoffeeQuantity, deleteCoffeeFromCart } = useContext(CartContext)
   const quantity = coffee.quantity
 
   const totalItemsPrice = formatPrice(quantity * coffee.price)
@@ -28,6 +27,10 @@ export function SelectedCoffeeCard({ coffee }: SelectedCoffeCardProps) {
 
   function onDecrease() {
     changeCoffeeQuantity(coffee.id, { type: 'decrease' })
+  }
+
+  function handleDeleteFromCart() {
+    deleteCoffeeFromCart(coffee.id)
   }
 
   return (
@@ -42,7 +45,7 @@ export function SelectedCoffeeCard({ coffee }: SelectedCoffeCardProps) {
               onDecrease={onDecrease}
               onIncrease={onIncrease}
             />
-            <RemoveButton type="button">
+            <RemoveButton type="button" onClick={handleDeleteFromCart}>
               <Trash size={16} />
               Remover
             </RemoveButton>

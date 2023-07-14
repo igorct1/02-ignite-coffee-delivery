@@ -2,33 +2,46 @@ import { createContext, ReactNode, useState } from 'react'
 import { ICoffee } from '../pages/Home/components/CoffeeCard'
 import { produce } from 'immer'
 
+interface CartProviderProps {
+  children: ReactNode
+}
+
+export interface CartProps extends ICoffee {
+  quantity: number
+}
+
 interface CartContextProps {
-  cart: ICoffee[] | []
+  cart: CartProps[] | []
   cartTotalPrice: number
   changeCoffeeQuantity: (
     coffeeId: number,
     changeType: { type: 'increase' | 'decrease' },
   ) => void
-  addNewCoffeeToCart: (coffee: ICoffee) => void
-}
-
-interface CartProviderProps {
-  children: ReactNode
+  addNewCoffeeToCart: (coffee: CartProps) => void
+  deleteCoffeeFromCart: (coffeeId: number) => void
 }
 
 export const CartContext = createContext({} as CartContextProps)
 
 export function CartProvider({ children }: CartProviderProps) {
-  const [cart, setCart] = useState<ICoffee[]>([])
+  const [cart, setCart] = useState<CartProps[]>([])
 
   const cartTotalPrice = cart.reduce((acc, item) => {
     return acc + item.quantity * item.price
   }, 0)
 
-  function addNewCoffeeToCart(coffee: ICoffee) {
+  function addNewCoffeeToCart(coffee: CartProps) {
     setCart((state) => {
       return produce(state, (draft) => {
         draft.push(coffee)
+      })
+    })
+  }
+
+  function deleteCoffeeFromCart(coffeeId: number) {
+    setCart((state) => {
+      return produce(state, (draft) => {
+        return draft.filter((coffee) => coffee.id !== coffeeId)
       })
     })
   }
@@ -63,6 +76,7 @@ export function CartProvider({ children }: CartProviderProps) {
         cartTotalPrice,
         addNewCoffeeToCart,
         changeCoffeeQuantity,
+        deleteCoffeeFromCart,
       }}
     >
       {children}

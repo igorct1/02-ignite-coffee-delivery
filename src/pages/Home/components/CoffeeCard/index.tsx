@@ -18,7 +18,6 @@ export interface ICoffee {
   description: string
   photo: string
   price: number
-  quantity?: number
 }
 
 type CoffeeProps = {

@@ -8,8 +8,6 @@ import { ConfirmOrder } from '../ConfirmOrder'
 export function SelectedCoffees() {
   const { cart } = useContext(CartContext)
 
-  console.log(cart)
-
   return (
     <SelectedCoffeesContainer>
       <h3>Cafés selecionados</h3>
