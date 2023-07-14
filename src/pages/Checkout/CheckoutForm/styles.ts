@@ -42,35 +42,6 @@ export const CheckoutFormInputs = styled.div`
   display: grid;
   grid-template-columns: 200px 1fr 60px;
   gap: 1.2rem;
-
-  input {
-    border-radius: 4px;
-
-    border: 1px solid ${(props) => props.theme.colors['base-button']};
-
-    padding: 1.2rem;
-
-    font-size: ${(props) => props.theme.fontSizes['text-S']};
-    color: ${(props) => props.theme.colors['base-label']};
-
-    background-color: ${(props) => props.theme.colors['base-input']};
-
-    outline: none;
-
-    &.cep {
-      max-width: 20rem;
-      grid-column: span 3;
-    }
-
-    &.rua {
-      max-width: 100%;
-      grid-column: span 3;
-    }
-
-    &.complemento {
-      grid-column: span 2;
-    }
-  }
 `
 
 export const CheckoutFormPayment = styled.div`
@@ -119,9 +90,19 @@ export const CheckoutFormPaymentMethods = styled.div`
     border-radius: 8px;
     background: ${(props) => props.theme.colors['base-button']};
     cursor: pointer;
+    outline: none;
+
+    border: 1px solid transparent;
+
+    &.selected {
+      transition: all 0.3s;
+      background-color: ${(props) => props.theme.colors['purple-light']};
+      border: 1px solid ${(props) => props.theme.colors.purple};
+    }
 
     input {
       display: NONE;
+      outline: none;
     }
 
     span {

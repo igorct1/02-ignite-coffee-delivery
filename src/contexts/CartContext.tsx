@@ -19,6 +19,7 @@ interface CartContextProps {
   ) => void
   addNewCoffeeToCart: (coffee: CartProps) => void
   deleteCoffeeFromCart: (coffeeId: number) => void
+  clearCart: () => void
 }
 
 export const CartContext = createContext({} as CartContextProps)
@@ -29,6 +30,10 @@ export function CartProvider({ children }: CartProviderProps) {
   const cartTotalPrice = cart.reduce((acc, item) => {
     return acc + item.quantity * item.price
   }, 0)
+
+  function clearCart() {
+    setCart([])
+  }
 
   function addNewCoffeeToCart(coffee: CartProps) {
     setCart((state) => {
@@ -77,6 +82,7 @@ export function CartProvider({ children }: CartProviderProps) {
         addNewCoffeeToCart,
         changeCoffeeQuantity,
         deleteCoffeeFromCart,
+        clearCart,
       }}
     >
       {children}

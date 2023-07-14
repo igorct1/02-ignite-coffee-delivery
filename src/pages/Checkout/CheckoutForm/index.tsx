@@ -1,4 +1,4 @@
-import { CurrencyDollar, MapPin, Money } from 'phosphor-react'
+import { Bank, CreditCard, CurrencyDollar, MapPin, Money } from 'phosphor-react'
 import {
   CheckoutFormAddress,
   CheckoutFormContainer,
@@ -7,8 +7,35 @@ import {
   CheckoutFormPaymentMethods,
   CheckoutFormWrapper,
 } from './styles'
+import { useFormContext } from 'react-hook-form'
+import { InputForm } from '../../../components/InputForm'
+
+interface ErrorsType {
+  errors: {
+    [key: string]: {
+      message: string
+    }
+  }
+}
 
 export function CheckoutForm() {
+  const { register, formState } = useFormContext()
+  const { errors } = formState as unknown as ErrorsType
+
+  function handleClickInput({
+    currentTarget,
+  }: {
+    currentTarget: HTMLLabelElement
+  }) {
+    const labels = document.querySelectorAll('label')
+
+    labels.forEach((label) => label.classList.remove('selected'))
+
+    if (!currentTarget.classList.contains('selected')) {
+      currentTarget.classList.add('selected')
+    }
+  }
+
   return (
     <CheckoutFormContainer>
       <h3>Complete seu pedido</h3>
@@ -21,17 +48,34 @@ export function CheckoutForm() {
           </div>
         </CheckoutFormAddress>
         <CheckoutFormInputs>
-          <input type="text" placeholder="CEP" className="cep" />
-          <input type="text" placeholder="Rua" className="rua" />
-          <input type="text" placeholder="Número" />
-          <input
-            type="text"
-            placeholder="Complemento"
-            className="complemento"
+          <InputForm placeholder="CEP" type="cep" error={errors.cep?.message} />
+          <InputForm
+            placeholder="Rua"
+            type="street"
+            error={errors.street?.message}
           />
-          <input type="text" placeholder="Bairro" />
-          <input type="text" placeholder="Cidade" />
-          <input type="text" placeholder="UF" />
+          <InputForm
+            placeholder="Número"
+            type="number"
+            error={errors.number?.message}
+          />
+          <InputForm
+            placeholder="Complemento"
+            type="complement"
+            error={errors.complement?.message}
+          />
+          <InputForm
+            placeholder="Bairro"
+            type="district"
+            error={errors.district?.message}
+          />
+
+          <InputForm
+            placeholder="Cidade"
+            type="city"
+            error={errors.city?.message}
+          />
+          <InputForm placeholder="UF" type="uf" error={errors.uf?.message} />
         </CheckoutFormInputs>
       </CheckoutFormWrapper>
       <CheckoutFormPayment>
@@ -45,32 +89,35 @@ export function CheckoutForm() {
           </div>
         </div>
         <CheckoutFormPaymentMethods>
-          <label htmlFor="credit">
+          <label htmlFor="credit" onClick={handleClickInput}>
             <input
               type="radio"
               placeholder="CARTÃO DE CRÉDITO"
-              name="credit"
               id="credit"
+              value="credit"
+              {...register('payment')}
             />
-            <Money />
+            <CreditCard />
             <span>CARTÃO DE CRÉDITO</span>
           </label>
-          <label htmlFor="debit">
+          <label htmlFor="debit" onClick={handleClickInput}>
             <input
               type="radio"
               placeholder="CARTÃO DE CRÉDITO"
-              name="debit"
               id="debit"
+              value="debit"
+              {...register('payment')}
             />
-            <Money />
+            <Bank />
             <span>CARTÃO DE DÉBITO</span>
           </label>
-          <label htmlFor="money">
+          <label htmlFor="money" onClick={handleClickInput}>
             <input
               type="radio"
               placeholder="DINHEIRO"
-              name="money"
               id="money"
+              value="money"
+              {...register('payment')}
             />
             <Money />
             <span>DINHEIRO</span>
