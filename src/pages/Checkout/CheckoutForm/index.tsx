@@ -94,7 +94,7 @@ export function CheckoutForm() {
               type="radio"
               placeholder="CARTÃO DE CRÉDITO"
               id="credit"
-              value="credit"
+              value="Cart'~ao de Crédito"
               {...register('payment')}
             />
             <CreditCard />
@@ -105,7 +105,7 @@ export function CheckoutForm() {
               type="radio"
               placeholder="CARTÃO DE CRÉDITO"
               id="debit"
-              value="debit"
+              value="Cartão de Débito"
               {...register('payment')}
             />
             <Bank />
@@ -116,7 +116,7 @@ export function CheckoutForm() {
               type="radio"
               placeholder="DINHEIRO"
               id="money"
-              value="money"
+              value="Dinheiro"
               {...register('payment')}
             />
             <Money />
