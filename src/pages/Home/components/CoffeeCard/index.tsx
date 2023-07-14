@@ -10,6 +10,7 @@ import { QuantityButton } from '../../../../components/QuantityButton'
 import { CartContext } from '../../../../contexts/CartContext'
 import { useContext, useState } from 'react'
 import { produce } from 'immer'
+import { formatPrice } from '../../../../utils/formatPrice'
 
 export interface ICoffee {
   id: number
@@ -28,6 +29,8 @@ export function CoffeeCard({ coffee }: CoffeeProps) {
   const [quantity, setQuantity] = useState(1)
 
   const { addNewCoffeeToCart } = useContext(CartContext)
+
+  const formattedPrice = formatPrice(coffee.price).replace('R$', '')
 
   function onIncrease() {
     setQuantity((state) => {
@@ -69,7 +72,7 @@ export function CoffeeCard({ coffee }: CoffeeProps) {
 
       <CoffeeCardPriceContainer>
         <p>
-          R$ <span>9,90</span>
+          R$ <span>{formattedPrice}</span>
         </p>
 
         <CoffeeCardPriceCart>

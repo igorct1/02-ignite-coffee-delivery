@@ -56,13 +56,14 @@ export const CoffeeCardPriceContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  gap: 0.5rem;
 
   p {
     color: ${(props) => props.theme.colors['base-text']};
 
     span {
       font-family: ${(props) => props.theme.fonts.title};
-      font-size: ${(props) => props.theme.fontSizes['title-M']};
+      font-size: ${(props) => props.theme.fontSizes['title-S']};
     }
   }
 `
