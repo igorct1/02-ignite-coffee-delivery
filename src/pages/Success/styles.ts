@@ -26,12 +26,26 @@ export const SuccessInfoContainer = styled.div`
 
 export const SuccessInfo = styled.div`
   min-width: 526px;
-  border: 1px solid green;
   padding: 4rem;
-  border-radius: 8px 36px 8px 36px;
+
+  gap: 3.2rem;
+
+  border-radius: 6px 36px 6px 36px;
+  position: relative;
+  background: ${(props) => props.theme.colors.white};
+
   display: flex;
   flex-direction: column;
-  gap: 3.2rem;
+  gap: 2rem;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    z-index: -1;
+    border-radius: 7px 37px 7px 37px;
+    background: linear-gradient(102.89deg, #dbac2c 2.61%, #8047f8 98.76%);
+  }
 `
 export const SuccessInfoCard = styled.div`
   display: flex;
