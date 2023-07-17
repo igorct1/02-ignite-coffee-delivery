@@ -9,7 +9,7 @@ import { CartContext } from '../../contexts/CartContext'
 import * as zod from 'zod'
 
 const confirmFormOrderSchema = zod.object({
-  cep: zod.string().min(1, 'Informe o cep'),
+  cep: zod.string().min(1, 'Informe o seu cep'),
   street: zod.string().min(1, 'Informe a rua'),
   number: zod.string().min(1, 'Informe o número'),
   complement: zod.string(),
@@ -24,9 +24,6 @@ export type ConfirmOrderDataProps = zod.infer<typeof confirmFormOrderSchema>
 export function Checkout() {
   const confirmFormOrder = useForm<ConfirmOrderDataProps>({
     resolver: zodResolver(confirmFormOrderSchema),
-    defaultValues: {
-      payment: 'Cartão de Crédite',
-    },
   })
 
   const { clearCart } = useContext(CartContext)

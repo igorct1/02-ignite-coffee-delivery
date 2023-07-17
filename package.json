@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.1.1",
+    "@radix-ui/react-radio-group": "^1.1.3",
     "@types/styled-components": "^5.1.26",
     "immer": "^10.0.2",
     "phosphor-react": "^1.4.1",

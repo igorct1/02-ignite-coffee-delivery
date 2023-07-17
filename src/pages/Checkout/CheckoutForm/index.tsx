@@ -4,6 +4,7 @@ import {
   CheckoutFormContainer,
   CheckoutFormInputs,
   CheckoutFormPayment,
+  CheckoutFormPaymentItem,
   CheckoutFormPaymentMethods,
   CheckoutFormWrapper,
 } from './styles'
@@ -21,20 +22,6 @@ interface ErrorsType {
 export function CheckoutForm() {
   const { register, formState } = useFormContext()
   const { errors } = formState as unknown as ErrorsType
-
-  function handleClickInput({
-    currentTarget,
-  }: {
-    currentTarget: HTMLLabelElement
-  }) {
-    const labels = document.querySelectorAll('label')
-
-    labels.forEach((label) => label.classList.remove('selected'))
-
-    if (!currentTarget.classList.contains('selected')) {
-      currentTarget.classList.add('selected')
-    }
-  }
 
   return (
     <CheckoutFormContainer>
@@ -89,39 +76,44 @@ export function CheckoutForm() {
           </div>
         </div>
         <CheckoutFormPaymentMethods>
-          <label htmlFor="credit" onClick={handleClickInput}>
-            <input
-              type="radio"
-              placeholder="CARTÃO DE CRÉDITO"
-              id="credit"
-              value="Cart'~ao de Crédito"
-              {...register('payment')}
-            />
-            <CreditCard />
-            <span>CARTÃO DE CRÉDITO</span>
-          </label>
-          <label htmlFor="debit" onClick={handleClickInput}>
-            <input
-              type="radio"
-              placeholder="CARTÃO DE CRÉDITO"
-              id="debit"
-              value="Cartão de Débito"
-              {...register('payment')}
-            />
-            <Bank />
-            <span>CARTÃO DE DÉBITO</span>
-          </label>
-          <label htmlFor="money" onClick={handleClickInput}>
-            <input
-              type="radio"
-              placeholder="DINHEIRO"
-              id="money"
-              value="Dinheiro"
-              {...register('payment')}
-            />
-            <Money />
-            <span>DINHEIRO</span>
-          </label>
+          <CheckoutFormPaymentItem value="Crédito">
+            <label htmlFor="v1">
+              <input
+                id="v1"
+                type="radio"
+                value="Cartão de Crédito"
+                {...register('payment')}
+              />
+              <CreditCard />
+              <span>Cartão de Crédito</span>
+            </label>
+          </CheckoutFormPaymentItem>
+
+          <CheckoutFormPaymentItem value="Débito">
+            <label htmlFor="v2">
+              <input
+                id="v2"
+                type="radio"
+                value="Cartão de Débito"
+                {...register('payment')}
+              />
+              <Bank />
+              <span>Cartão de Débito</span>
+            </label>
+          </CheckoutFormPaymentItem>
+
+          <CheckoutFormPaymentItem value="Dinheiro">
+            <label htmlFor="v3">
+              <input
+                id="v3"
+                type="radio"
+                value="Dinheiro"
+                {...register('payment')}
+              />
+              <Money />
+              <span>Dinheiro</span>
+            </label>
+          </CheckoutFormPaymentItem>
         </CheckoutFormPaymentMethods>
       </CheckoutFormPayment>
     </CheckoutFormContainer>

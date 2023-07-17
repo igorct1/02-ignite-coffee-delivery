@@ -1,4 +1,5 @@
 import { styled } from 'styled-components'
+import * as RadioGroup from '@radix-ui/react-radio-group'
 
 export const CheckoutFormContainer = styled.section`
   display: flex;
@@ -42,6 +43,15 @@ export const CheckoutFormInputs = styled.div`
   display: grid;
   grid-template-columns: 200px 1fr 60px;
   gap: 1.2rem;
+
+  input {
+    color: ${(props) => props.theme.colors['base-text']};
+    font-size: ${(props) => props.theme.fontSizes['text-S']};
+
+    &::placeholder {
+      color: ${(props) => props.theme.colors['base-label']};
+    }
+  }
 `
 
 export const CheckoutFormPayment = styled.div`
@@ -76,37 +86,51 @@ export const CheckoutFormPayment = styled.div`
   }
 `
 
-export const CheckoutFormPaymentMethods = styled.div`
+export const CheckoutFormPaymentMethods = styled(RadioGroup.Root)`
   display: flex;
   gap: 1.2rem;
   align-items: center;
+`
+
+export const CheckoutFormPaymentItem = styled(RadioGroup.Item)`
+  border: 0;
+
+  display: flex;
+  gap: 1.2rem;
+
+  padding: 1.6rem;
+
+  background: ${(props) => props.theme.colors['base-button']};
+
+  border-radius: 6px;
+  min-width: 180px;
+  border: 1px solid transparent;
+
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &[data-state='checked'] {
+    background: ${(props) => props.theme.colors['purple-light']};
+    border: 1px solid ${(props) => props.theme.colors.purple};
+  }
+
+  &[data-state='unchecked']:hover {
+    background: ${(props) => props.theme.colors['base-hover']};
+  }
+
+  input {
+    display: none;
+  }
 
   label {
     display: flex;
     gap: 1.2rem;
-    padding: 1.6rem;
-    width: 180px;
     align-items: center;
-    border-radius: 8px;
-    background: ${(props) => props.theme.colors['base-button']};
-    cursor: pointer;
-    outline: none;
-
-    border: 1px solid transparent;
-
-    &.selected {
-      transition: all 0.3s;
-      background-color: ${(props) => props.theme.colors['purple-light']};
-      border: 1px solid ${(props) => props.theme.colors.purple};
-    }
-
-    input {
-      display: NONE;
-      outline: none;
-    }
+    text-transform: uppercase;
 
     span {
-      font-size: ${(props) => props.theme.fontSizes['text-XS']};
+      color: ${(props) => props.theme.colors['base-text']};
+      font-size: ${(props) => props.theme.fontSizes['button-M']};
     }
   }
 `

@@ -29,6 +29,7 @@ export function Success() {
 
   if (!state) return null
 
+  console.log(state)
   return (
     <SuccessContainer>
       <SuccessText>

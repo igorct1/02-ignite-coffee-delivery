@@ -27,7 +27,6 @@ export const SuccessInfoContainer = styled.div`
 export const SuccessInfo = styled.div`
   min-width: 526px;
   padding: 4rem;
-
   gap: 3.2rem;
 
   border-radius: 6px 36px 6px 36px;
@@ -36,7 +35,6 @@ export const SuccessInfo = styled.div`
 
   display: flex;
   flex-direction: column;
-  gap: 2rem;
 
   &::before {
     content: '';
