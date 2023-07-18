@@ -6,7 +6,9 @@
 </div>
 
 # Descrição
-Terceiro projeto do Ignite, uma cafeteria fictícia.
+Segundo desafio do Ignite, uma cafeteria fictícia com as seguintes funcionalidades;
+- O projeto possui 3 telas, a inicial, onde é possível ver a listagem de todos os cafés disponíveis na cafeteria, podendo adicionar ou remover do carrinho,
+  a segunda tela é onde o usuário precisa preencher os campos do formulário para o pagamento e endereço de entrega, e a terceira é exibido a confirmação do pedido contendo as informações preenchidas pelo formulário, como endereço e forma de pagamento.
 
 
 ## Tecnologias
@@ -17,7 +19,7 @@ Terceiro projeto do Ignite, uma cafeteria fictícia.
 -   zod
 -   Immer
 -   Styled Components
-
+-   Localstorage
 
 
 ## Como utilizar?
